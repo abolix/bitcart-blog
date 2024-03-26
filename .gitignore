@@ -7,6 +7,8 @@
 .DS_Store
 .cache
 .env
+.env.*
+!.env.example
 .eslintcache
 .grunt
 .idea
@@ -34,3 +36,11 @@ sw.*
 typings/
 yarn-debug.log*
 yarn-error.log*
+
+
+# Nuxt dev/build outputs
+.output
+.data
+.nitro
+*.log
+.fleet

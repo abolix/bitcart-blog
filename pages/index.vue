@@ -19,23 +19,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  async asyncData({ $content, params }) {
-    const articles = await $content("articles", params.slug)
-      .only(["title", "img", "slug", "author", "category"])
-      .sortBy("createdAt", "desc")
-      .fetch()
-    const categories = await $content("categories", params.slug)
+<script setup>
+  const articles = await queryContent('articles')
+    .only(["title", "img", "_path", "author", "category", ])
+    .sort({ createdAt: -1})
+    .find()
+
+
+    const categories = await queryContent("categories")
       .only(["name"])
-      .sortBy("name", "asc")
-      .fetch()
-    return {
-      articles,
-      categories,
-    }
-  },
-}
+      .sort({ name: 1 })
+      .find()
 </script>
 
 <style class="postcss">

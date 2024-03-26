@@ -42,25 +42,23 @@
     </ul>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      searchQuery: "",
-      articles: [],
-    }
-  },
-  watch: {
-    async searchQuery(searchQuery) {
-      if (!searchQuery) {
-        this.articles = []
-        return
-      }
-      this.articles = await this.$content("articles")
-        .limit(6)
-        .search(searchQuery)
-        .fetch()
-    },
-  },
-}
+<script setup>
+
+const searchQuery = ref("")
+const articles = ref([])
+
+
+watch(searchQuery, async (value) => {
+  console.log(value);
+  if (!value) {
+    articles.value = []
+    return
+  }
+  articles.value = await queryContent("articles")
+    .limit(6)
+    .where({ title: { $regex: new RegExp(value, "i") } })
+    .find()
+})
+
+
 </script>

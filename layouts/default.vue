@@ -1,7 +1,7 @@
 <template>
   <div class="m-8">
     <TheHeader />
-    <Nuxt />
+    <slot/>
     <footer class="flex justify-center border-gray-500 border-t-2">
       <p class="mt-4">© Bitcart 2018-{{ new Date().getFullYear() }}</p>
     </footer>

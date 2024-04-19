@@ -14,6 +14,12 @@ export default {
       .where({ author: { $eq: params.author } })
       .sortBy("createdAt", "desc")
       .fetch()
+
+
+    articles.forEach((article) => {
+      article._path = article._path.replace("/articles", "")
+    })
+
     if (articles.length === 0) {
       error({ statusCode: 404, message: "Author not found" })
     }

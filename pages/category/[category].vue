@@ -15,5 +15,10 @@
         .where({ category: { $eq: category.name } })
         .sort("createdAt", "desc")
         .find()
-    // TODO : ADD 404
+
+
+      articles.forEach((article) => {
+        article._path = article._path.replace("/articles", "")
+      })
+
 </script>

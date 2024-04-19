@@ -20,14 +20,14 @@
       </div>
     </header>
     <div class="prose prose-lg mx-auto">
-      <ContentDoc :document="article" />
+      <ContentRenderer :value="article"/>
     </div>
   </div>
 </template>
 
 <script setup>
 const route = useRoute()
-const article = await queryContent("articles", route.params.slug[1]).findOne()
+const article = await queryContent("articles", route.params.slug[0]).findOne()
 
 const formatDate = (date) => {
   const options = { year: "numeric", month: "long", day: "numeric" }

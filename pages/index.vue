@@ -8,7 +8,7 @@
       >
         <NuxtLink :to="`category/${category.name}`" class="">
           <p
-            class="font-bold text-gray-600 uppercase tracking-wider font-medium text-ss"
+            class="font-bold text-gray-600 uppercase tracking-wider text-ss"
           >
             {{ category.name }}
           </p>
@@ -24,6 +24,11 @@
     .only(["title", "img", "_path", "author", "category", ])
     .sort({ createdAt: -1})
     .find()
+
+    // _path is like "/articles/bitcartcc-whmcs-plugin-is-out" we wanna remove /articles/ from it
+    articles.forEach((article) => {
+      article._path = article._path.replace("/articles", "")
+    })
 
 
     const categories = await queryContent("categories")
